@@ -76,7 +76,7 @@ resource "tessell_db_service" "TF_WF_Testing_Mysql" {
 		enable_auto_backup = false
 		include_transaction_logs = true
 		standard_policy {
-			retention_days = 1
+			retention_days = 7
 			snapshot_start_time {
 				hour = 1
 				minute = 0

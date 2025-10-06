@@ -1,0 +1,33 @@
+name: Terraform Destroy
+
+on:
+  workflow_dispatch:  # Manual trigger
+
+jobs:
+  terraform-destroy:
+    runs-on: ubuntu-latest
+    environment:
+      name: destroy
+      # You can require manual approval here in GitHub Environments if needed
+
+    env:
+      TF_VAR_api_key: ${{ secrets.MY_API_KEY }}  # Or any other credentials
+      # Add other required secrets like AWS credentials here
+
+    steps:
+      - name: Checkout Terraform Code
+        uses: actions/checkout@v4
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.5.7
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Plan Destroy
+        run: terraform plan -destroy -out=tfdestroy
+
+      - name: Terraform Destroy
+        run: terraform apply -auto-approve tfdestroy

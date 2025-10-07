@@ -17,8 +17,8 @@ variable "api_key" {
   default = "" # You can leave this empty if you're using TF_VAR_api_key instead
 }
 
-resource "tessell_db_service" "TF_WF_Testing_Mysql" {
-	name = "TF-WF-Testing-Mysql"
+resource "tessell_db_service" "TF_WF_Testing_Mysql-1" {
+	name = "TF-WF-Testing-Mysql-1"
 	description = ""
 	subscription = "azure-byoa"
 	edition = "COMMUNITY"
